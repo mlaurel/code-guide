@@ -26,6 +26,8 @@ layout: default
   <div class="col">
     <h4><a href="#css">CSS</a></h4>
     <ul>
+      <li><a href="#css-zero-everything">Zero everything</a></li>
+      <li><a href="#css-longform">Longform</a></li>
       <li><a href="#css-syntax">CSS syntax</a></li>
       <li><a href="#css-declaration-order">Declaration order</a></li>
       <li><a href="#css-import">Don't use @import</a></li>
@@ -206,6 +208,27 @@ layout: default
 
 <div class="heading" id="css">
   <h2>CSS</h2>
+</div>
+
+<div class="section" id="css-zero-everything">
+  <div class="col">
+    <h3>Zero everything</h3>
+    <p>It's a pain to override a heading margin on your module that has a box around the title. Therefore, don't add defaults to anything. Keep the cascade as shallow as possible and only use it intentionally, where necessary.</p>
+    <p>This scare you? See the <a href="#css-longform">longform</a> section for more detail.</p>
+  </div>
+  <div class="col">
+    {% highlight css %}{% include css/zero-everything.css %}{% endhighlight %}
+  </div>
+</div>
+
+<div class="section" id="css-longform">
+  <div class="col">
+    <h3>Longform Copy</h3>
+    <p>Adding a class of <code>longform</code> that handles all your text styles allows the UI of your site to be free of all those extra selectors.</p>
+  </div>
+  <div class="col">
+    {% highlight css %}{% include css/longform.css %}{% endhighlight %}
+  </div>
 </div>
 
 <div class="section" id="css-syntax">
