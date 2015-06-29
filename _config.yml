@@ -1,6 +1,6 @@
-name:          Code Guide by @mdo
+name:          Happy Cog Code Guide
 description:   Standards for developing flexible, durable, and sustainable HTML and CSS.
-url:           http://codeguide.co
+url:           http://happycog.github.io/code-guide
 
 markdown:      rdiscount
 permalink:     pretty
