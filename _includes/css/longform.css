@@ -1,0 +1,8 @@
+/** zero all the things */
+h1, p, table, * { margin: 0; padding: 0; }
+
+/** smartly re-add the spacing you need */
+.longform h1 { margin-bottom: 0.5em; }
+.longform h2 { margin-bottom: 0.25em; }
+.longform p { margin-bottom: 1em; }
+.longform table { border: 1px solid gray; }
