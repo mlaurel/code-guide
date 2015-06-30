@@ -17,7 +17,6 @@ layout: default
       <li><a href="#html-ie-compatibility-mode">Internet Explorer compatibility mode</a></li>
       <li><a href="#html-style-script">CSS and JavaScript includes</a></li>
       <li><a href="#html-practicality">Practicality over purity</a></li>
-      <li><a href="#html-attribute-order">Attribute order</a></li>
       <li><a href="#html-boolean-attributes">Boolean attributes</a></li>
       <li><a href="#html-reducing-markup">Reducing markup</a></li>
       <li><a href="#html-javascript">JavaScript generated markup</a></li>
@@ -149,28 +148,10 @@ layout: default
   </div>
 </div>
 
-<div class="section" id="html-attribute-order">
-  <div class="col">
-    <h3>Attribute order</h3>
-    <p>HTML attributes should come in this particular order for easier reading of code.</p>
-    <ul>
-      <li><code>class</code></li>
-      <li><code>id</code>, <code>name</code></li>
-      <li><code>data-*</code></li>
-      <li><code>src</code>, <code>for</code>, <code>type</code>, <code>href</code>, <code>value</code></li>
-      <li><code>title</code>, <code>alt</code></li>
-      <li><code>aria-*</code>, <code>role</code></li>
-    </ul>
-    <p>Classes make for great reusable components, so they come first. Ids are more specific and should be used sparingly (e.g., for in-page bookmarks), so they come second.</p>
-  </div>
-  <div class="col">
-    {% highlight html %}{% include html/attribute-order.html %}{% endhighlight %}
-  </div>
-</div>
-
 <div class="section" id="html-boolean-attributes">
   <div class="col">
     <h3>Boolean attributes</h3>
+    <h1>@TODO use selected="selected"</h1>
     <p>A boolean attribute is one that needs no declared value. XHTML required you to declare a value, but HTML5 has no such requirement.</p>
     <p>For further reading, consult the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#boolean-attributes">WhatWG section on boolean attributes</a>:</p>
     <blockquote>
