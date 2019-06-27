@@ -3,9 +3,7 @@ layout: default
 ---
 
 
-<div class="heading" id="toc">
-  <h2>Table of contents</h2>
-</div>
+<h2 id="toc">Table of contents</h2>
 <div class="section toc">
   <div class="col">
     <h4><a href="#html">HTML</a></h4>
@@ -13,20 +11,22 @@ layout: default
       <li><a href="#html-syntax">Syntax</a></li>
       <li><a href="#html-doctype">HTML5 doctype</a></li>
       <li><a href="#html-lang">Language attribute</a></li>
-      <li><a href="#html-encoding">Character encoding</a></li>
       <li><a href="#html-ie-compatibility-mode">Internet Explorer compatibility mode</a></li>
+      <li><a href="#html-encoding">Character encoding</a></li>
       <li><a href="#html-style-script">CSS and JavaScript includes</a></li>
       <li><a href="#html-practicality">Practicality over purity</a></li>
+      <li><a href="#html-attribute-order">Attribute order</a></li>
       <li><a href="#html-boolean-attributes">Boolean attributes</a></li>
-      <li><a href="#html-reducing-markup">Reducing markup</a> @TODO add wysiwyg guidelines</li>
+      <li><a href="#html-reducing-markup">Reducing markup</a></li>
       <li><a href="#html-javascript">JavaScript generated markup</a></li>
     </ul>
   </div>
   <div class="col">
     <h4><a href="#css">CSS</a></h4>
     <ul>
-      <li><a href="#css-longform">Longform</a></li>
       <li><a href="#css-syntax">CSS syntax</a></li>
+      <li><a href="#css-declaration-order">Declaration order</a></li>
+      <li><a href="#css-import">Don't use @import</a></li>
       <li><a href="#css-media-queries">Media query placement</a></li>
       <li><a href="#css-prefixed-properties">Prefixed properties</a></li>
       <li><a href="#css-single-declarations">Rules with single declarations</a></li>
@@ -41,10 +41,10 @@ layout: default
   </div>
 </div>
 
-
+<h2 id="golden-rule">Golden rule</h2>
 <div class="section" id="golden-rule">
   <div class="col">
-    <h2>Golden rule</h2>
+    <h3></h3>
     <p>Enforce these, or your own, agreed upon guidelines at all times. Small or large, call out what's incorrect. For additions or contributions to this Code Guide, please <a href="https://github.com/mdo/code-guide/issues/new">open an issue on GitHub</a>.</p>
   </div>
   <div class="col">
@@ -55,15 +55,12 @@ layout: default
 </div>
 
 
-
-<div class="heading" id="html">
-  <h2>HTML</h2>
-</div>
-
+<h2 id="html">HTML</h2>
 <div class="section" id="html-syntax">
   <div class="col">
     <h3>Syntax</h3>
     <ul>
+      <li>Don't capitalize tags, including the doctype.</li>
       <li>Use soft tabs with two spaces—they're the only way to guarantee code renders the same in any environment.</li>
       <li>Nested elements should be indented once (two spaces).</li>
       <li>Always use double quotes, never single quotes, on attributes.</li>
@@ -79,7 +76,7 @@ layout: default
 <div class="section" id="html-doctype">
   <div class="col">
     <h3>HTML5 doctype</h3>
-    <p>Enforce standards mode and more consistent rendering in every browser possible with this simple doctype at the beginning of every HTML page.</p>
+    <p>Enforce <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode_and_Standards_Mode">standards mode</a> and more consistent rendering in every browser possible with this simple doctype at the beginning of every HTML page.</p>
   </div>
   <div class="col">
     {% highlight html %}{% include html/doctype.html %}{% endhighlight %}
@@ -93,8 +90,7 @@ layout: default
     <blockquote>
       <p>Authors are encouraged to specify a lang attribute on the root html element, giving the document's language. This aids speech synthesis tools to determine what pronunciations to use, translation tools to determine what rules to use, and so forth.</p>
     </blockquote>
-    <p>Read more about the <code>lang</code> attribute <a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-html-element">in the spec</a>.</p>
-    <p>Head to Sitepoint for a <a href="http://reference.sitepoint.com/html/lang-codes">list of language codes</a>.</p>
+    <p>Read more about the <code>lang</code> attribute <a href="http://www.w3.org/html/wg/drafts/html/master/semantics.html#the-html-element">in the spec</a>. Head to Sitepoint for a <a href="https://www.sitepoint.com/iso-2-letter-language-codes/">list of language codes</a>.</p>
   </div>
   <div class="col">
     {% highlight html %}{% include html/lang.html %}{% endhighlight %}
@@ -105,7 +101,7 @@ layout: default
   <div class="col">
     <h3>IE compatibility mode</h3>
     <p>Internet Explorer supports the use of a document compatibility <code>&lt;meta&gt;</code> tag to specify what version of IE the page should be rendered as. Unless circumstances require otherwise, it's most useful to instruct IE to use the latest supported mode with <strong>edge mode</strong>.</p>
-    <p>For more information, <a href="http://stackoverflow.com/questions/6771258/whats-the-difference-if-meta-http-equiv-x-ua-compatible-content-ie-edge-e">read this awesome Stack Overflow article</a>.</p>
+    <p>For more information, <a href="https://stackoverflow.com/questions/6771258/what-does-meta-http-equiv-x-ua-compatible-content-ie-edge-do">read this awesome Stack Overflow article</a>.</p>
   </div>
   <div class="col">
     {% highlight html %}{% include html/ie-compatibility-mode.html %}{% endhighlight %}
@@ -145,10 +141,28 @@ layout: default
   </div>
 </div>
 
+<div class="section" id="html-attribute-order">
+  <div class="col">
+    <h3>Attribute order</h3>
+    <p>HTML attributes should come in this particular order for easier reading of code.</p>
+    <ul>
+      <li><code>class</code></li>
+      <li><code>id</code>, <code>name</code></li>
+      <li><code>data-*</code></li>
+      <li><code>src</code>, <code>for</code>, <code>type</code>, <code>href</code>, <code>value</code></li>
+      <li><code>title</code>, <code>alt</code></li>
+      <li><code>role</code>, <code>aria-*</code></li>
+    </ul>
+    <p>Classes make for great reusable components, so they come first. Ids are more specific and should be used sparingly (e.g., for in-page bookmarks), so they come second.</p>
+  </div>
+  <div class="col">
+    {% highlight html %}{% include html/attribute-order.html %}{% endhighlight %}
+  </div>
+</div>
+
 <div class="section" id="html-boolean-attributes">
   <div class="col">
     <h3>Boolean attributes</h3>
-    <h1>@TODO use selected="selected"</h1>
     <p>A boolean attribute is one that needs no declared value. XHTML required you to declare a value, but HTML5 has no such requirement.</p>
     <p>For further reading, consult the <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/common-microsyntaxes.html#boolean-attributes">WhatWG section on boolean attributes</a>:</p>
     <blockquote>
@@ -183,23 +197,7 @@ layout: default
 </div>
 
 
-
-<div class="heading" id="css">
-  <h2>CSS</h2>
-</div>
-
-<h1>@TODO add something about universal selector and global margin guidelines</h1>
-
-<div class="section" id="css-longform">
-  <div class="col">
-    <h3>Longform Copy</h3>
-    <p>Adding a class of <code>longform</code> that handles all your text styles allows the UI of your site to be free of all those extra selectors.</p>
-  </div>
-  <div class="col">
-    {% highlight css %}{% include css/longform.css %}{% endhighlight %}
-  </div>
-</div>
-
+<h2 id="css">CSS</h2>
 <div class="section" id="css-syntax">
   <div class="col">
     <h3>Syntax</h3>
@@ -226,10 +224,45 @@ layout: default
   </div>
 </div>
 
+<div class="section" id="css-declaration-order">
+  <div class="col">
+    <h3>Declaration order</h3>
+    <p>Related property declarations should be grouped together following the order:</p>
+    <ol>
+      <li>Positioning</li>
+      <li>Box model</li>
+      <li>Typographic</li>
+      <li>Visual</li>
+      <li>Misc</li>
+    </ol>
+    <p>Positioning comes first because it can remove an element from the normal flow of the document and override box model related styles. The box model comes next as it dictates a component's dimensions and placement.</p>
+    <p>Everything else takes place <em>inside</em> the component or without impacting the previous two sections, and thus they come last.</p>
+    <p>For a complete list of properties and their order, please see the <a href="https://github.com/twbs/stylelint-config-twbs-bootstrap/blob/master/css/index.js">Bootstrap property order for Stylelint</a>.</p>
+  </div>
+  <div class="col">
+    {% highlight css %}{% include css/declaration-order.css %}{% endhighlight %}
+  </div>
+</div>
+
+<div class="section" id="css-import">
+  <div class="col">
+    <h3>Don't use <code>@import</code></h3>
+    <p>Compared to <code>&lt;link&gt;</code>s, <code>@import</code> is slower, adds extra page requests, and can cause other unforeseen problems. Avoid them and instead opt for an alternate approach:</p>
+    <ul>
+      <li>Use multiple <code>&lt;link&gt;</code> elements</li>
+      <li>Compile your CSS with a preprocessor like <a href="https://sass-lang.com/">Sass</a> or <a href="http://lesscss.org/">Less</a> into a single file</li>
+      <li>Concatenate your CSS files with features provided in Rails, Jekyll, and other environments</li>
+    </ul>
+    <p>For more information, <a href="http://www.stevesouders.com/blog/2009/04/09/dont-use-import/">read this article by Steve Souders</a>.</p>
+  </div>
+  <div class="col">
+    {% highlight html %}{% include css/import.html %}{% endhighlight %}
+  </div>
+</div>
+
 <div class="section" id="css-media-queries">
   <div class="col">
     <h3>Media query placement</h3>
-    <h1>@TODO add rules around sass to include media queries within the element they're affecting</h1>
     <p>Place media queries as close to their relevant rule sets whenever possible. Don't bundle them all in a separate stylesheet or at the end of the document. Doing so only makes it easier for folks to miss them in the future. Here's a typical setup.</p>
   </div>
   <div class="col">
@@ -240,7 +273,6 @@ layout: default
 <div class="section" id="css-prefixed-properties">
   <div class="col">
     <h3>Prefixed properties</h3>
-    <h1>@todo use autoprefixer, don't do this.</h1>
     <p>When using vendor prefixed properties, indent each property such that the declaration's value lines up vertically for easy multi-line editing.</p>
     <p>In Textmate, use <strong>Text &rarr; Edit Each Line in Selection</strong> (&#8963;&#8984;A). In Sublime Text 2, use <strong>Selection &rarr; Add Previous Line</strong> (&#8963;&#8679;&uarr;) and <strong>Selection &rarr;  Add Next Line</strong> (&#8963;&#8679;&darr;).</p>
   </div>
@@ -263,7 +295,7 @@ layout: default
 <div class="section" id="css-shorthand">
   <div class="col">
     <h3>Shorthand notation</h3>
-    <p>Strive to limit use of shorthand declarations to instances where you must explicitly set all the available values. Common overused shorthand properties include:</p>
+    <p>Limit shorthand declaration usage to instances where you must explicitly set all available values. Frequently overused shorthand properties include:</p>
     <ul>
       <li><code>padding</code></li>
       <li><code>margin</code></li>
@@ -272,7 +304,8 @@ layout: default
       <li><code>border</code></li>
       <li><code>border-radius</code></li>
     </ul>
-    <p>Often times we don't need to set all the values a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. Excessive use of shorthand properties often leads to sloppier code with unnecessary overrides and unintended side effects.</p>
+    <p>Usually we don't need to set all the values a shorthand property represents. For example, HTML headings only set top and bottom margin, so when necessary, only override those two values. A `0` value implies an override of either a browser default or previously specified value.</p>
+    <p>Excessive use of shorthand properties leads to sloppier code with unnecessary overrides and unintended side effects.</p>
     <p>The Mozilla Developer Network has a great article on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties">shorthand properties</a> for those unfamiliar with notation and behavior.</p>
   </div>
   <div class="col">
@@ -284,6 +317,10 @@ layout: default
   <div class="col">
     <h3>Nesting in Less and Sass</h3>
     <p>Avoid unnecessary nesting. Just because you can nest, doesn't mean you always should. Consider nesting only if you must scope styles to a parent and if there are multiple elements to be nested.</p>
+    <p>Additional reading:</p>
+    <ul>
+      <li><a href="http://markdotto.com/2015/07/20/css-nesting/">Nesting in Sass and Less</a></li>
+    </ul>
   </div>
   <div class="col">
     {% highlight scss %}{% include css/nesting.scss %}{% endhighlight %}
@@ -335,7 +372,7 @@ layout: default
     <ul>
       <li>Use classes over generic element tag for optimum rendering performance.</li>
       <li>Avoid using several attribute selectors (e.g., <code>[class^="..."]</code>) on commonly occuring components. Browser performance is known to be impacted by these.</li>
-      <li>Keep selectors short and strive to limit the number of elements in each selector to two.</li>
+      <li>Keep selectors short and strive to limit the number of elements in each selector to three.</li>
       <li>Scope classes to the closest parent <strong>only</strong> when necessary (e.g., when not using prefixed classes).</li>
     </ul>
     <p>Additional reading:</p>
@@ -374,6 +411,6 @@ layout: default
       <li>Set encoding to UTF-8.</li>
       <li>Add new line at end of files.</li>
     </ul>
-    <p>Consider documenting and applying these preferences to your project's <code>.editorconfig</code> file. For an example, see <a href="https://github.com/twbs/bootstrap/blob/master/.editorconfig">the one in Bootstrap</a>. Learn more <a href="http://editorconfig.org">about EditorConfig</a>.</p>
+    <p>Consider documenting and applying these preferences to your project's <code>.editorconfig</code> file. For an example, see <a href="https://github.com/twbs/bootstrap/blob/master/.editorconfig">the one in Bootstrap</a>. Learn more <a href="https://editorconfig.org">about EditorConfig</a>.</p>
   </div>
 </div>
